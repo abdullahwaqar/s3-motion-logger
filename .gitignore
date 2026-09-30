@@ -1,0 +1,29 @@
+# KiCad backups and autosave
+*-backups/
+*.kicad_prl
+*.bak
+*.bck
+*-bak
+*~
+_autosave-*
+fp-info-cache
+*.tmp
+*.lck
+\#auto_saved_files#
+
+# Generated exports (regenerate from the project)
+*.net
+*.xml
+*.dsn
+*.ses
+*.rpt
+*-cache.lib
+*-rescue.lib
+*-rescue.dcm
+
+# Gerbers: leave out until the open DRC items are fixed
+gerbers/
+
+# OS
+.DS_Store
+Thumbs.db

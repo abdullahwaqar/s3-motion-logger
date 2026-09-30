@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "motion_logger")(type "KiCad")(uri "${KIPRJMOD}/motion_logger.kicad_sym")(options "")(descr "S3 Motion Logger custom symbols"))
+)
