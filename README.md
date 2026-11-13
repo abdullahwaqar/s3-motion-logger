@@ -2,7 +2,7 @@
 
 ESP32-S3 motion logging board. It logs 6-axis IMU data to a microSD card and streams it over USB, BLE or Wi-Fi. It runs from a single-cell LiPo and charges over USB-C.
 
-![Top layer](docs/01.png)
+![3D render of the board](docs/imu-logger-01-cover.png)
 
 **Schematic:** [docs/s3-motion-logger-schematic.pdf](docs/s3-motion-logger-schematic.pdf)
 
@@ -20,6 +20,10 @@ ESP32-S3 motion logging board. It logs 6-axis IMU data to a microSD card and str
 | Expansion  | Qwiic (I2C) with cuttable pull-ups                     |
 | Board      | 50 x 44.5 mm, 4 layers, 1.6 mm, JLCPCB-oriented rules  |
 
+## Block diagram
+
+![Block diagram: USB-C to BQ24074 charger and TPS63802 buck-boost, LiPo through reverse protection, ESP32-S3 to IMU, microSD, USB and Qwiic](docs/block-diagram.webp)
+
 ## Design decisions
 
 - **Charger boots in a safe mode.** The BQ24074 defaults to 500 mA through the EN1/EN2 pull resistors. Firmware raises the input limit only after reading the USB-C CC voltage on the ADC and confirming a 1.5 A or 3 A source.
@@ -31,6 +35,14 @@ ESP32-S3 motion logging board. It logs 6-axis IMU data to a microSD card and str
 - **Datasheet-driven parts.** Pinouts and decoupling for the TPS63802 and ICM-42688-P were taken from the TI and TDK datasheets, with custom symbols in `motion_logger.kicad_sym`.
 - **Stackup.** L1 signal and parts, L2 solid GND, L3 3V3, L4 signal and GND fill. The antenna sits at the board edge with a copper keep-out on all layers.
 
+![Power sheet: charger, buck-boost, reverse protection and switched battery sense](docs/power-schematic.webp)
+
+## Layout
+
+![Four-layer stackup, each copper layer shown separately](docs/stackup.webp)
+
+![Top copper layer](docs/top-copper.webp)
+
 ## Power budget (3.3 V rail)
 
 | Load                | Typical              | Peak             |
@@ -40,6 +52,8 @@ ESP32-S3 motion logging board. It logs 6-axis IMU data to a microSD card and str
 | ICM-42688-P         | about 1 mA           | about 1 mA       |
 | LEDs, pull-ups      | about 5 mA           | about 5 mA       |
 | **Total**           | **60 to 110 mA**     | **about 460 mA** |
+
+![MCU sheet GPIO map and 3.3 V power budget](docs/gpio-power-budget.webp)
 
 ## Open items
 
